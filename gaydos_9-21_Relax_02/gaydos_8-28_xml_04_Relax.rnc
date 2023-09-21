@@ -1,0 +1,27 @@
+start = root
+
+root = element root {metadata?, poem+, citation?}
+
+metadata = element metadata {codeBy?, title, author+, pubDate, stamp?, lib?}
+codeBy = element codeBy {who, empty}
+who = attribute who {text}
+title = element title {text}
+author = element author {text}
+pubDate = element pubDate {xsd:date | xsd:gYearMonth | xsd:gYear}
+stamp = element stamp {text}
+lib = element lib {text, division?}
+division = element division {text}
+
+poem = element poem {heading, (line | history | message | repetition | signature)*}
+heading = element heading {text}
+line = element line {n, mixed{history*}}
+history = element history {text}
+n = attribute n {xsd:integer}
+message = element message {lines, meaning}
+lines = attribute lines {text}
+meaning = attribute meaning {text}
+repetition = element repetition {lines, times}
+times = attribute times {xsd:integer}
+signature = element signature {text}
+
+citation = element citation {text}
